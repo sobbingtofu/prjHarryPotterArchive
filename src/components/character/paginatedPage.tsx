@@ -4,11 +4,18 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 import Slider from "react-slick"
 
-import { getAll } from "@/app/characters/[slug]/actions"
+import {
+  getAll,
+  getHouseFilteredData,
+  getOtherCharacterData,
+} from "@/app/characters/[slug]/actions"
 import { ChracterDataType } from "@/app/characters/[slug]/page"
+
+import { CharacterType } from "../../../types/characterTypes"
 
 const NextArrow = (props: any) => {
   const { className, style, onClick } = props
@@ -42,35 +49,26 @@ const PrevArrow = (props: any) => {
   )
 }
 
-const fetchFilteredHouseData = async (house: string) => {
-  const response = await (await fetch(`/api/houses/${house}`)).json()
-  return response
-}
-const fetchOtherCharacters = async (house: string) => {
-  const response = await getAll(house)
-  return response
-}
-
 interface HouseCarouselProps {
   house: string
-  type: string
+  type?: string
 }
 
 const HouseCarousel = ({ house, type }: HouseCarouselProps) => {
-  const { data, isFetched } = useQuery<ChracterDataType[]>({
+  const { data, isFetched } = useQuery<CharacterType[]>({
     queryKey: type === "house" ? ["getHouse-data"] : ["getOhter-data"],
     queryFn: () => {
       if (type === "house") {
-        return fetchFilteredHouseData(house)
+        return getHouseFilteredData(house)
       } else {
-        return fetchOtherCharacters(house)
+        return getAll(house)
       }
     },
   })
 
   const settings = {
     // dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -85,18 +83,23 @@ const HouseCarousel = ({ house, type }: HouseCarouselProps) => {
   return (
     <div>
       <Slider {...settings}>
-        {data?.map((item) => (
-          <div key={item.id}>
-            <Image
-              src={item.image}
-              alt={item.name}
-              width={100}
-              height={100}
-              className="h-[150px] w-[150px]"
-            />
-            <h3>{item.name}</h3>
-          </div>
-        ))}
+        {data &&
+          data?.map((item) => (
+            <Link
+              href={`/characters/${item.name}`}
+              key={item.id}
+              className="m-2"
+            >
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={150}
+                height={200}
+                className="h-[180px]"
+              />
+              <h3>{item.name}</h3>
+            </Link>
+          ))}
       </Slider>
     </div>
   )
