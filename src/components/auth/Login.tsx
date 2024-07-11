@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react"
 import { useRouter } from "next/navigation"
+import Swal from "sweetalert2"
 
 import supabase from "../../../lib/supabase"
 
@@ -16,7 +17,10 @@ const Login = () => {
     const password = passwordRef.current?.value
 
     if (!email || !password) {
-      alert("모든 항목을 입력해주세요.")
+      Swal.fire({
+        text: "모든항목을 입력해주세요!",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -26,11 +30,19 @@ const Login = () => {
     })
 
     if (error) {
-      alert(error.message)
+      Swal.fire({
+        text: error.message,
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
-    alert("로그인완료")
+    Swal.fire({
+      icon: "success",
+      title: "로그인 완료",
+      showConfirmButton: false,
+      timer: 1500,
+    })
     router.replace("/")
   }
 
@@ -38,28 +50,45 @@ const Login = () => {
     <>
       <form
         onSubmit={onSubmit}
-        className="h-64 w-6/12 flex-col items-center justify-center border bg-white p-11"
+        className="flex h-80 w-96 flex-col items-center justify-center gap-8 rounded-md border bg-white p-11"
       >
-        <p>로그인</p>
+        <p className="block text-2xl font-bold">로그인</p>
 
-        <input
-          ref={emailRef}
-          type="email"
-          id="email"
-          placeholder="이메일을 입력하세요."
-          className="rounded-md border-2 border-gray-300 p-1"
-        />
+        <div className="relative w-80">
+          <input
+            ref={emailRef}
+            type="email"
+            id="email"
+            placeholder="이메일을 입력하세요."
+            className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+          />
+          <label
+            htmlFor="email"
+            className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+          >
+            이메일을 입력하세요.
+          </label>
+        </div>
 
-        <input
-          ref={passwordRef}
-          type="password"
-          id="password"
-          placeholder="비밀번호를 입력하세요."
-          className="rounded-md border-2 border-gray-300 p-1"
-        />
+        <div className="relative w-80">
+          <input
+            ref={passwordRef}
+            type="password"
+            id="password"
+            placeholder="비밀번호"
+            className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+          />
+          <label
+            htmlFor="password"
+            className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+          >
+            비밀번호를 입력하세요
+          </label>
+        </div>
+
         <button
           type="submit"
-          className="w-full rounded-md bg-black p-2 text-white"
+          className="h-20 w-80 rounded-md bg-black p-2 text-white transition-transform duration-300 hover:-translate-y-1"
         >
           로그인
         </button>
