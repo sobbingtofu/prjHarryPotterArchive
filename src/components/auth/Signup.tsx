@@ -2,8 +2,9 @@
 
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
+import Swal from "sweetalert2"
 
-import supabase from "../../../lib/supabase"
+import supabase from "../../lib/supabase"
 
 const Signup = () => {
   const [name, setName] = useState("")
@@ -50,12 +51,18 @@ const Signup = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (email === "" || password === "" || passwordConfirm === "") {
-      alert("모든 항목을 입력해주세요.")
+      Swal.fire({
+        text: "모든항목을 입력해주세요!",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
     if (password !== passwordConfirm) {
-      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
+      Swal.fire({
+        text: "비밀번호와 비밀번호 확인이 일치하지 않습니다!",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -65,7 +72,10 @@ const Signup = () => {
     })
 
     if (error) {
-      return alert(error.message)
+      return Swal.fire({
+        text: error.message,
+        confirmButtonColor: "#000000",
+      })
     }
 
     const user = data.user
@@ -75,21 +85,24 @@ const Signup = () => {
         .insert([{ user_id: user.id, name, email, password }])
 
       if (insertError) {
-        return alert(insertError.message)
+        return Swal.fire({
+          text: insertError.message,
+          confirmButtonColor: "#000000",
+        })
       }
-
-      alert("회원가입이 완료되었습니다.")
-      router.replace("/")
     }
 
-    alert("회원가입이 완료되었습니다.")
+    Swal.fire({
+      text: "회원가입이 완료되었습니다!",
+      confirmButtonColor: "#000000",
+    })
 
     router.replace("/")
   }
 
   return (
     <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-      <div className="absolute h-3/6 w-60 flex-col items-center justify-center rounded-lg border bg-white p-11">
+      <div className="absolute h-3/4 w-5/12 flex-col items-center justify-center rounded-lg border bg-white p-11">
         <button onClick={onClickClose}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -108,47 +121,82 @@ const Signup = () => {
         </button>
         <form
           onSubmit={onSubmit}
-          className="flex flex-col items-center justify-center gap-4"
+          className="flex flex-col items-center justify-center gap-5"
         >
-          <p>회원가입</p>
-          <input
-            type="text"
-            id="name"
-            className="rounded-md border-2 border-gray-300 p-1"
-            placeholder="이름"
-            value={name}
-            onChange={onChangeName}
-          />
+          <p className="mb-6 text-2xl font-bold">회원가입</p>
 
-          <input
-            type="email"
-            id="email"
-            placeholder="이메일"
-            className="rounded-md border-2 border-gray-300 p-1"
-            value={email}
-            onChange={onChangeEmail}
-          />
+          <div className="relative w-80">
+            <input
+              type="text"
+              id="name"
+              className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+              placeholder="이름"
+              value={name}
+              onChange={onChangeName}
+            />
+            <label
+              htmlFor="email"
+              className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+            >
+              이름
+            </label>
+          </div>
 
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호"
-            className="rounded-md border-2 border-gray-300 p-1"
-            value={password}
-            onChange={onChangePassword}
-          />
+          <div className="relative w-80">
+            <input
+              type="email"
+              id="email"
+              placeholder="이메일"
+              className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+              value={email}
+              onChange={onChangeEmail}
+            />
+            <label
+              htmlFor="email"
+              className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+            >
+              이메일
+            </label>
+          </div>
+
+          <div className="relative w-80">
+            <input
+              type="password"
+              id="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={onChangePassword}
+              className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+            />
+            <label
+              htmlFor="password"
+              className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+            >
+              비밀번호
+            </label>
+          </div>
+
           {error.password && <p className="text-red-500">{error.password}</p>}
-          <input
-            type="password"
-            id="passwordConfirm"
-            placeholder="비밀번호 확인"
-            className="rounded-md border-2 border-gray-300 p-1"
-            value={passwordConfirm}
-            onChange={onChangePasswordConfirm}
-          />
+
+          <div className="relative w-80">
+            <input
+              type="password"
+              id="passwordConfirm"
+              placeholder="비밀번호 확인"
+              className="peer mt-2 h-12 w-full rounded-md border-2 border-gray-300 p-1 placeholder-transparent focus:border-blue-500 focus:outline-none"
+              value={passwordConfirm}
+              onChange={onChangePasswordConfirm}
+            />
+            <label
+              htmlFor="password"
+              className="absolute -top-3.5 left-2 text-sm text-gray-600 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600"
+            >
+              비밀번호 확인
+            </label>
+          </div>
           <button
             type="submit"
-            className="w-full rounded-md bg-black p-2 text-white"
+            className="h-11 w-80 rounded-md bg-black p-2 text-white transition-transform duration-300 hover:-translate-y-1"
           >
             회원가입
           </button>

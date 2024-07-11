@@ -133,10 +133,12 @@ function HouseTestPage() {
   }
 
   return (
-    <Page className=" bg-neutral-950">
+    <div style={{ backgroundColor: "#171717" }}>
+
+    <Page>
       {nextPage === 0 ? 
         // 시작 페이지
-        <Card className="px-8 py-10 w-[500px] my-6 mx-auto ">
+        <Card className="px-8 py-8 w-[500px] my-3 mx-auto ">
          <img src="/img/house-test.webp" alt="House Test" className="my-4 w-[320px] mx-auto" />
           <div className="my-7">
           <h4 className=" mb-3 text-center scroll-m-20 text-xl font-semibold tracking-tight">
@@ -145,21 +147,24 @@ function HouseTestPage() {
             호그와트기숙사 테스트
             </h1>
           </div>
-          <p className="mb-7 text-center leading-7 [&:not(:first-child)]:mt-6">
+          <p className=" mb-6 text-center leading-7 [&:not(:first-child)]:mt-6">
       4분소요
     </p>
           <Button className="w-full" onClick={() => setNextPage(1)}>▶ 시작하기</Button>
         </Card>
         : nextPage < qnaList.length ?
           // 질문 페이지
-          <Card className="px-8 py-10 w-[500px] h-[600px]  my-6 mx-auto  ">
-            <div className="mb-4"><code className="object-center relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+          <Card className="px-8 py-10 w-[500px] h-[600px]  my-3 mx-auto ">
+            <div className="mb-3"><code className="object-center relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
               {`${nextPage} / ${qnaList.length - 1}`}
               </code>
               </div>
+              <div className="w-full h-1 bg-gray-200 rounded">
+              <div className="h-full bg-gray-800 rounded" style={{ width: `${((nextPage) / (qnaList.length - 1)) * 100}%` }}></div>
+            </div>
             {qnaList[nextPage - 1].q && (
               <div>
-                <h3 className="mb-11 text-center scroll-m-20 text-2xl font-semibold tracking-tight">
+                <h3 className="my-9 text-center scroll-m-20 text-2xl font-semibold tracking-tight">
                 <div>{qnaList[nextPage - 1].q}</div>
                 </h3>
                 <div className="grid w-full justify-center">
@@ -174,7 +179,7 @@ function HouseTestPage() {
           </Card>
           :
           // 결과 페이지
-          <Card className="px-8 py-9 w-[500px] my-4 mx-auto  ">
+          <Card className="px-8 py-9 w-[500px] my-3 mx-auto  ">
             <div className="my-8 text-center" >
               <h4 className="mb-2 scroll-m-20 text-xl font-semibold tracking-tight">당신의 기숙사는</h4>
               <h1 className="mb-5 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{houseContent.houseName}</h1>
@@ -185,7 +190,9 @@ function HouseTestPage() {
             <Button className="my-9 mb-5 w-full" onClick={() => window.location.reload()}>다시하기</Button>
           </Card>
       }
+      
     </Page>
+    </div>
   );
 }
 
