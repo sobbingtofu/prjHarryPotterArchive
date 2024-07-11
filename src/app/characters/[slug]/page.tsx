@@ -26,16 +26,19 @@ async function CharacterPage({ params }: { params: { slug: string } }) {
   const data = await getCharacterData(slug)
 
   return (
-    <Page>
-      <section className="mx-auto flex w-3/4 items-center justify-center gap-10">
+    <main
+      className="h-full w-full bg-cover bg-center bg-no-repeat py-20"
+      style={{ backgroundImage: 'url("/bgimage.png")' }}
+    >
+      <section className="mx-auto flex w-1/2 items-center justify-center gap-10 *:text-white">
         <div>
           <Image
             src={data?.image}
             alt={data?.name}
-            width={200}
-            height={200}
+            width={150}
+            height={150}
             priority
-            className="size-[240px] rounded-full"
+            className="size-[180px] rounded-full object-cover"
             quality={100}
           />
         </div>
@@ -77,15 +80,17 @@ async function CharacterPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <section className="mx-auto mt-32 w-[80%]">
-        <h2 className="text-lg font-semibold">같은 기숙사 다른 캐릭터 보기</h2>
+      <section className="mx-auto mt-16 *:text-white sm:w-[80%] md:w-[70%] lg:w-[50%]">
+        <h2 className="mb-2 text-lg font-semibold">
+          같은 기숙사 다른 캐릭터 보기
+        </h2>
         <HouseCarousel house={data?.house} type="house" />
       </section>
-      <section className="mx-auto mt-16 w-[80%]">
-        <h2 className="text-lg font-semibold">다른 캐릭터 보기</h2>
+      <section className="mx-auto mt-8 *:text-white sm:w-[80%] md:w-[70%] lg:w-[50%]">
+        <h2 className="mb-2 text-lg font-semibold">다른 캐릭터 보기</h2>
         <HouseCarousel house={data?.house} type="other" />
       </section>
-    </Page>
+    </main>
   )
 }
 

@@ -77,19 +77,15 @@ const HouseCarousel = ({ house, type }: HouseCarouselProps) => {
   }
 
   if (!isFetched) {
-    return <p>Loading...</p>
+    return <p className="animate-pulse">Loading...</p>
   }
 
   return (
-    <div>
+    <div className="relative w-full">
       <Slider {...settings}>
         {data &&
           data?.map((item) => (
-            <Link
-              href={`/characters/${item.name}`}
-              key={item.id}
-              className="m-2"
-            >
+            <Link href={`/characters/${item.name}`} key={item.id}>
               <Image
                 src={item.image}
                 alt={item.name}
@@ -97,7 +93,7 @@ const HouseCarousel = ({ house, type }: HouseCarouselProps) => {
                 height={200}
                 className="h-[180px]"
               />
-              <h3>{item.name}</h3>
+              <h3 className="absolute bottom-5 text-xs">{item.name}</h3>
             </Link>
           ))}
       </Slider>

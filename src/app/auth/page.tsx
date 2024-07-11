@@ -1,18 +1,25 @@
 import React from "react"
-import Image from "next/image"
 
-import AuthBtn from "@/components/auth/AuthBtn"
-
-import loginImage from "../../../public/login.jpeg"
+import Login from "@/components/auth/Login"
+import LoginText from "@/components/auth/LoginText"
+import SignupBtn from "@/components/auth/SignupBtn"
 
 const AuthPage = () => {
   return (
-    <div className="m-auto flex h-screen items-center justify-center">
-      <div className="relative h-60 w-60 md:h-56 md:w-48">
-        <Image src={loginImage} fill alt="unsplash image" />
+    <>
+      <div className="bg-castle relative flex h-screen items-center justify-center bg-cover bg-center">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative z-10 flex w-full max-w-4xl">
+          <div className="flex w-1/2">
+            <LoginText />
+          </div>
+          <div className="flex w-1/2 flex-col items-center">
+            <Login />
+            <SignupBtn />
+          </div>
+        </div>
       </div>
-      <AuthBtn />
-    </div>
+    </>
   )
 }
 

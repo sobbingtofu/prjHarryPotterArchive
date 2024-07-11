@@ -9,6 +9,7 @@ const baseURL = process.env.BASE_URL
 
 export const getCharacterData = async (character: string) => {
   try {
+    // await new Promise((resolve) => setTimeout(resolve, 300000))
     const response = await (
       await fetch(`${baseURL}/api/characters/${character}`)
     ).json()
