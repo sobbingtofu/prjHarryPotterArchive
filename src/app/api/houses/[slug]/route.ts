@@ -21,6 +21,6 @@ export const GET = async (
 
     return NextResponse.json(filteredData)
   } catch (error) {
-    return NextResponse.json({ error: error }, { status: 500 })
+    return NextResponse.json({ error: "fail fetch!" }, { status: 500 })
   }
 }

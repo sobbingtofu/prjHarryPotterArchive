@@ -1,6 +1,7 @@
 import React from "react"
 import Image from "next/image"
 
+import HouseCarousel from "@/components/character/paginatedPage"
 import Page from "@/components/Page"
 
 import {
@@ -38,7 +39,14 @@ async function CharacterPage({ params }: { params: { slug: string } }) {
     <Page>
       <section>
         <div>
-          <Image src={data.image} alt={data.name} width={200} height={200} />
+          <Image
+            src={data.image}
+            alt={data.name}
+            width={200}
+            height={200}
+            priority
+            className="h-[200px] w-[200px]"
+          />
           <p>{data.name}</p>
           <p>{data.house}</p>
           <p>{data.species}</p>
@@ -46,29 +54,25 @@ async function CharacterPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
       <section className="mt-24">
-        <div className="flex w-full flex-wrap">
-          {houseFilteredData.map((data) => {
-            return (
-              <div key={data.id}>
-                <Image
-                  src={data.image}
-                  alt={data.name}
-                  width={100}
-                  height={100}
-                />
-                <p>{data.name}</p>
-              </div>
-            )
-          })}
+        <div>
+          <HouseCarousel house={data.house} type="house" />
         </div>
       </section>
-      <section className="mt-28 flex flex-wrap">
-        {getOtherData.map((data) => (
+      <section>
+        <HouseCarousel house={data.house} type="other" />
+        {/* {getOtherData.map((data) => (
           <div key={data.id}>
-            <Image src={data.image} alt={data.name} width={100} height={100} />
+            <Image
+              src={data.image}
+              alt={data.name}
+              width={100}
+              height={100}
+              priority
+              className="h-[100px] w-[100px]"
+            />
             <p>{data.name}</p>
           </div>
-        ))}
+        ))} */}
       </section>
     </Page>
   )

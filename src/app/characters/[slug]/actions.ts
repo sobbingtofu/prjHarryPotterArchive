@@ -25,6 +25,7 @@ export const getHouseFilteredData = async (house: string) => {
       throw new Error("Failed to fetch data from internal API house!")
     }
     const data = await response.json()
+
     return data
   } catch (error) {
     console.error("Error fetching data:", error)
