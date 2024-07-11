@@ -71,7 +71,7 @@ const HouseCarousel = ({ house, type }: HouseCarouselProps) => {
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToScroll: data && data?.length % 2 === 0 ? 2 : 3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   }
