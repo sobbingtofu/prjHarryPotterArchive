@@ -4,7 +4,7 @@ import React, { useRef } from "react"
 import { useRouter } from "next/navigation"
 import Swal from "sweetalert2"
 
-import supabase from "../../../lib/supabase"
+import supabase from "../../lib/supabase"
 
 const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null)
