@@ -7,7 +7,7 @@ export default function Home() {
     <Page>
       <h1 className="mb-1 text-3xl font-black">해리포터 영화 시리즈</h1>
       <MovieList />
-      <h1 className="mb-6 mt-8 text-3xl font-black">
+      <h1 className="mb-10 mt-8 text-3xl font-black">
         해리포터의 인물들을 만나보세요
       </h1>
       <CharacterList />

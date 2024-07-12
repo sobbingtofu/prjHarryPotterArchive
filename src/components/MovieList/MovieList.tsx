@@ -57,7 +57,7 @@ function MovieList() {
     return <div>데이터 불러오던 중 오류가 발생했습니다.</div>
   } else {
     return (
-      <>
+      <div className="min-h-[65vh]">
         <p className="mt-2 font-semibold">
           {movies[currentOnFocusMovie - 1].title}
         </p>
@@ -103,7 +103,7 @@ function MovieList() {
             })}
           </Swiper>
         </div>
-      </>
+      </div>
     )
   }
 }
