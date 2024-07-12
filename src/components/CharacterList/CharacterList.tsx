@@ -41,10 +41,7 @@ function CharacterList() {
   } else if (isError) {
     return <div>데이터 불러오던 중 오류가 발생했습니다.</div>
   } else {
-    console.log(characters)
-
     const settings = {
-      // dots: true,
       infinite: false,
       speed: 500,
       slidesToShow: 6,
