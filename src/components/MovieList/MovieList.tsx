@@ -55,7 +55,7 @@ function MovieList() {
 
     return (
       <div
-        className="hover:scroll flex items-center justify-center overscroll-contain scrollbar-hide"
+        className="hover:scroll scrollbar-hide flex items-center justify-center overscroll-contain"
         ref={scrollContainerRef}
         onMouseOver={() => {
           document.body.style.overflowY = "hidden"
