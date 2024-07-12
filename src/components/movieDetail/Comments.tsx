@@ -167,7 +167,7 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
         <input type="text" placeholder="리뷰를 등록해 주세요" name="comment" />
         <button type="submit">리뷰 등록</button>
       </form>
-      <ul>
+      <ul className="flex">
         {commentList.map((comment: Comment) => {
           return !comment.isEditing ? (
             <li

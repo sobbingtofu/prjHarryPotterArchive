@@ -27,10 +27,10 @@ const OtherSeries: React.FC<OtherSeriesProps> = ({ serial, allMoviesInfo }) => {
     <div>
       <h3>다른 시리즈 보기</h3>
       <div>
-        <ul className="-ml-4">
+        <ul className="flex">
           {otherMovies.map((movie) => {
             return (
-              <li key={movie.serial} className="basis-1/7 w-48 pl-4">
+              <li key={movie.serial} className="">
                 <Link href={`/movies/${movie.serial}`}>
                   <Image
                     src={movie.poster}
