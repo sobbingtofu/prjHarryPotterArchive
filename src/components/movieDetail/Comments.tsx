@@ -1,4 +1,6 @@
 import React from "react"
+import { useRouter } from "next/navigation"
+import Swal from "sweetalert2"
 
 import { Comment, CommentList } from "@/types/commets.type"
 import supabase from "@/lib/supabase"
@@ -10,7 +12,7 @@ interface CommentsProps {
 const Comments: React.FC<CommentsProps> = ({ serial }) => {
   const [commentList, setCommentList] = React.useState<CommentList>([])
   const formRef = React.useRef<HTMLFormElement>(null)
-  // const [isEditing, setIsEditing] = React.useState(false)
+  const router = useRouter()
 
   React.useEffect(() => {
     const getCommentList = async () => {
@@ -46,11 +48,18 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
 
     const loggedinUser = await getUser()
     if (!loggedinUser) {
-      alert("로그인이 필요합니다.")
+      Swal.fire({
+        text: "로그인이 필요합니다.",
+        confirmButtonColor: "#000000",
+      })
+      router.push("/auth")
       return
     }
     if (comment?.trim().length < 10) {
-      alert("리뷰를 10글자 이상 작성해주세요")
+      Swal.fire({
+        text: "리뷰를 10글자 이상 작성해주세요",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -67,7 +76,10 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     if (error) {
       console.log(error)
     } else {
-      alert("리뷰 작성 완료")
+      Swal.fire({
+        text: "리뷰 작성 완료",
+        confirmButtonColor: "#000000",
+      })
       const newComment = data as Comment
       setCommentList((prev) => [...prev, newComment])
       formRef.current?.reset()
@@ -79,11 +91,18 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
   const handleDeleteComment = async (user_id: string, comment_id: string) => {
     const loggedinUser = await getUser()
     if (!loggedinUser) {
-      alert("로그인이 필요합니다.")
+      Swal.fire({
+        text: "로그인이 필요합니다.",
+        confirmButtonColor: "#000000",
+      })
+      router.push("/auth")
       return
     }
     if (loggedinUser.id !== user_id) {
-      alert("본인이 작성한 리뷰만 삭제할 수 있습니다.")
+      Swal.fire({
+        text: "본인이 작성한 리뷰만 삭제할 수 있습니다.",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -94,7 +113,10 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     if (error) {
       console.log(error)
     } else {
-      alert("리뷰 삭제 성공")
+      Swal.fire({
+        text: "리뷰 삭제 성공",
+        confirmButtonColor: "#000000",
+      })
       setCommentList(
         commentList.filter((comment) => {
           return comment.id !== comment_id
@@ -106,11 +128,18 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
   const handleChangeToEditing = async (user_id: string, comment_id: string) => {
     const loggedinUser = await getUser()
     if (!loggedinUser) {
-      alert("로그인이 필요합니다.")
+      Swal.fire({
+        text: "로그인이 필요합니다.",
+        confirmButtonColor: "#000000",
+      })
+      router.push("/auth")
       return
     }
     if (loggedinUser.id !== user_id) {
-      alert("본인이 작성한 리뷰만 수정할 수 있습니다.")
+      Swal.fire({
+        text: "본인이 작성한 리뷰만 수정할 수 있습니다.",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -132,7 +161,10 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     const comment = formData.get("comment") as string
 
     if (comment?.trim().length < 10) {
-      alert("리뷰를 10글자 이상 작성해주세요")
+      Swal.fire({
+        text: "리뷰를 10글자 이상 작성해주세요",
+        confirmButtonColor: "#000000",
+      })
       return
     }
 
@@ -145,7 +177,10 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     if (error) {
       console.log(error)
     } else {
-      alert("리뷰 수정 성공")
+      Swal.fire({
+        text: "리뷰 수정 성공",
+        confirmButtonColor: "#000000",
+      })
       const newComment = data as Comment
       setCommentList(
         commentList.map((comment) => {
