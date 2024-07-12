@@ -18,7 +18,7 @@ export type HarryPotterCharacters = {
   actor: string
   alternate_actors: any[]
   alive: boolean
-  image: string
+  image?: string
 }
 
 export type Wand = {

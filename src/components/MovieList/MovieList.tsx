@@ -48,14 +48,16 @@ function MovieList() {
             setCurrentOnFocusMovie(1)
           }
         } else {
-          if (currentOnFocusMovie > 1) setCurrentOnFocusMovie(-1)
+          if (currentOnFocusMovie > 1) {
+            setCurrentOnFocusMovie(-1)
+          }
         }
       }
     }
 
     return (
       <div
-        className="hover:scroll scrollbar-hide flex items-center justify-center overscroll-contain"
+        className="hover:scroll flex items-center justify-center overscroll-contain"
         ref={scrollContainerRef}
         onMouseOver={() => {
           document.body.style.overflowY = "hidden"
