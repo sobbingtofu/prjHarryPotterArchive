@@ -96,3 +96,7 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}

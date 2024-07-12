@@ -7,6 +7,11 @@ const zustandStore = create<tZustandStore>((set) => ({
   arrangeOption: "latest",
   setArrangeToLatest: () => set((state) => ({ arrangeOption: "latest" })),
   setArrangeToLikes: () => set((state) => ({ arrangeOption: "likes" })),
+  currentOnFocusMovie: 1,
+  setCurrentOnFocusMovie: (amount) =>
+    set((state) => ({
+      currentOnFocusMovie: state.currentOnFocusMovie + amount,
+    })),
 }))
 
 export default zustandStore
