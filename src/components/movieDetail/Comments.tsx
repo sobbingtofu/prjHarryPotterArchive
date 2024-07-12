@@ -1,4 +1,5 @@
 import React from "react"
+import { useRouter } from "next/navigation"
 import Swal from "sweetalert2"
 
 import { Comment, CommentList } from "@/types/commets.type"
@@ -11,6 +12,7 @@ interface CommentsProps {
 const Comments: React.FC<CommentsProps> = ({ serial }) => {
   const [commentList, setCommentList] = React.useState<CommentList>([])
   const formRef = React.useRef<HTMLFormElement>(null)
+  const router = useRouter()
 
   React.useEffect(() => {
     const getCommentList = async () => {
@@ -50,6 +52,7 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
         text: "로그인이 필요합니다.",
         confirmButtonColor: "#000000",
       })
+      router.push("/auth")
       return
     }
     if (comment?.trim().length < 10) {
@@ -92,6 +95,7 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
         text: "로그인이 필요합니다.",
         confirmButtonColor: "#000000",
       })
+      router.push("/auth")
       return
     }
     if (loggedinUser.id !== user_id) {
@@ -128,6 +132,7 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
         text: "로그인이 필요합니다.",
         confirmButtonColor: "#000000",
       })
+      router.push("/auth")
       return
     }
     if (loggedinUser.id !== user_id) {
