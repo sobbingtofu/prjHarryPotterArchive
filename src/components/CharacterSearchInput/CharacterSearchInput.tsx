@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, ChangeEventHandler, useCallback } from "react"
+import { ChangeEvent, useCallback } from "react"
 import zustandStore from "@/zustand/zustandStore"
 import { debounce } from "lodash"
 
