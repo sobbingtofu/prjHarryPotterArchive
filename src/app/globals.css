@@ -70,6 +70,7 @@
 
 body {
   -ms-overflow-style: none;
+  background-color: #171717;
 }
 
 ::-webkit-scrollbar {

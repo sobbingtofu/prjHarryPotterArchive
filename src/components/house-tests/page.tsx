@@ -139,14 +139,15 @@ function HouseTestPage() {
             </h1>
           </div>
           <p className=" mb-6 text-center leading-7 [&:not(:first-child)]:mt-6">
-      4분소요
-    </p>
+           4분소요
+          </p>
           <Button className="w-full" onClick={() => setNextPage(1)}>▶ 시작하기</Button>
         </Card>
         : nextPage < qnaList.length ?
           // 질문 페이지
           <Card className="px-8 py-10 w-[500px] h-[600px]  my-3 mx-auto ">
-            <div className="mb-3"><code className="object-center relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+            <div className="mb-3">
+              <code className="object-center relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
               {`${nextPage} / ${qnaList.length - 1}`}
               </code>
               </div>

@@ -16,6 +16,10 @@ const config = {
       screens: {
         "2xl": "1400px",
       },
+      colors: {
+        gray:{ 800:'#171717'
+      }
+      }
     },
     extend: {
       backgroundImage: {
