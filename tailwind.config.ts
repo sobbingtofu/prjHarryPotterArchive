@@ -17,9 +17,8 @@ const config = {
         "2xl": "1400px",
       },
       colors: {
-        gray:{ 800:'#171717'
-      }
-      }
+        gray: { 800: "#171717" },
+      },
     },
     extend: {
       backgroundImage: {
@@ -27,6 +26,7 @@ const config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         castle: "url('/castle.png')",
+        houseties: "url('/houseties.png')",
       },
       colors: {
         border: "hsl(var(--border))",
