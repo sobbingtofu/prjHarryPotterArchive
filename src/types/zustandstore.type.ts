@@ -1,7 +1,8 @@
 export type tZustandStore = {
-  arrangeOption: "latest" | "likes"
-  setArrangeToLatest: () => void
-  setArrangeToLikes: () => void
   currentOnFocusMovie: number
   setCurrentOnFocusMovie: (arg0: number) => void
+  showCharacterSearchInput: boolean
+  setShowCharacterSearchInput: (arg0: boolean) => void
+  characterSearchInputValue: string
+  setCharacterSearchInputValue: (arg0: string) => void
 }

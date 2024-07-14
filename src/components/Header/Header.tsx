@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { Session } from "@supabase/supabase-js"
 import Swal from "sweetalert2"
-import Image from "next/image"
 
 import supabase from "../../lib/supabase"
 
@@ -72,24 +72,24 @@ function Header() {
   }
 
   return (
-    <div className="container mx-auto max-w-[1920px] px-5 text-white" style={{ backgroundColor:"#171717" }}>
-      <div className="flex flex-row justify-between py-4 mx-8">
-      <Link href="/">
-          <Image src="/logo.svg" alt="logo" width={240} height={50}/>
+    <div className="container mx-auto max-w-[1920px] bg-[#171717] px-5 text-white">
+      <div className="mx-8 flex flex-row justify-between py-4">
+        <Link href="/">
+          <Image src="/logo.svg" alt="logo" width={240} height={50} />
         </Link>
 
         {session ? (
-          <div className="flex items-center ">
+          <div className="flex items-center">
             <p className="mr-4">안녕하세요, {userName}님</p>
             <button onClick={handleLogout} className="flex items-center">
-            <Image src="/user.svg" alt="user icon" width={30} height={30} />
+              <Image src="/user.svg" alt="user icon" width={30} height={30} />
               로그아웃
             </button>
           </div>
         ) : (
           <Link href="/auth">
             <p className="flex items-center">
-            <Image src="/user.svg" alt="user icon" width={30} height={30} />
+              <Image src="/user.svg" alt="user icon" width={30} height={30} />
               로그인
             </p>
           </Link>
