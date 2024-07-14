@@ -1,4 +1,5 @@
 import CharacterList from "@/components/CharacterList"
+import CharacterSearchInput from "@/components/CharacterSearchInput"
 import MovieList from "@/components/MovieList"
 import Page from "@/components/Page"
 
@@ -10,6 +11,7 @@ export default function Home() {
       <h1 className="mb-10 mt-8 text-3xl font-black">
         해리포터의 인물들을 만나보세요
       </h1>
+      <CharacterSearchInput />
       <CharacterList />
     </Page>
   )
