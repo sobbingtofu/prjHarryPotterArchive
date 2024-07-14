@@ -52,52 +52,54 @@ function CharacterList() {
 
   if (isPending) {
     return <Loader />
-  } else if (isError) {
-    return <div>데이터 불러오던 중 오류가 발생했습니다.</div>
-  } else {
-    const filteredCharacters =
-      characterSearchInputValue == ""
-        ? characters
-        : characters.filter((character) => {
-            return (
-              character.name
-                .toLowerCase()
-                .includes(characterSearchInputValue.toLowerCase()) ||
-              character.actor
-                .toLowerCase()
-                .includes(characterSearchInputValue.toLowerCase()) ||
-              character.house
-                .toLowerCase()
-                .includes(characterSearchInputValue.toLowerCase())
-            )
-          })
-    return (
-      <div className="grid min-h-[320px] grid-cols-2 gap-x-5 gap-y-14 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-24">
-        {filteredCharacters &&
-          filteredCharacters?.map((character) => (
-            <Link key={character.id} href={`/characters/${character.name}`}>
-              <div className="relative flex h-[250px] w-full flex-col rounded-3xl shadow-2xl transition-all duration-300 hover:scale-110 sm:h-[320px] md:h-[320px] lg:sm:h-[320px]">
-                <Image
-                  src={character.image || "/src/assets/defaultImg.jpg"}
-                  alt={character.name}
-                  fill
-                  className="w-auto rounded-3xl object-cover"
-                  sizes="100px"
-                />
-
-                <h3 className="text-s absolute bottom-4 mx-auto w-full text-center text-gray-50">
-                  {character.name}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        {filteredCharacters.length == 0 ? (
-          <p className="mt-7 font-bold text-gray-500">검색된 결과가 없습니다</p>
-        ) : (
-          <></>
-        )}
-      </div>
-    )
   }
+  if (isError) {
+    return <div>데이터 불러오던 중 오류가 발생했습니다.</div>
+  }
+
+  const filteredCharacters =
+    characterSearchInputValue == ""
+      ? characters
+      : characters.filter((character) => {
+          return (
+            character.name
+              .toLowerCase()
+              .includes(characterSearchInputValue.toLowerCase()) ||
+            character.actor
+              .toLowerCase()
+              .includes(characterSearchInputValue.toLowerCase()) ||
+            character.house
+              .toLowerCase()
+              .includes(characterSearchInputValue.toLowerCase())
+          )
+        })
+  return (
+    <div className="grid min-h-[320px] grid-cols-2 gap-x-5 gap-y-14 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-24">
+      {filteredCharacters &&
+        filteredCharacters?.map((character) => (
+          <Link key={character.id} href={`/characters/${character.name}`}>
+            <div className="relative flex h-[250px] w-full flex-col rounded-3xl shadow-2xl transition-all duration-300 hover:scale-110 sm:h-[320px] md:h-[320px] lg:sm:h-[320px]">
+              <Image
+                src={character.image || "/src/assets/defaultImg.jpg"}
+                alt={character.name}
+                fill
+                className="w-auto rounded-3xl object-cover"
+                sizes="100px"
+              />
+
+              <h3 className="text-s absolute bottom-4 mx-auto w-full text-center text-gray-50">
+                {character.name}
+              </h3>
+            </div>
+          </Link>
+        ))}
+      {filteredCharacters.length == 0 ? (
+        <p className="mt-7 font-bold text-gray-500">검색된 결과가 없습니다</p>
+      ) : (
+        <></>
+      )}
+    </div>
+  )
 }
+
 export default CharacterList
