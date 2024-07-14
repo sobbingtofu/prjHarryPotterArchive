@@ -25,9 +25,6 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     }
     getCommentList()
   }, [])
-  // insert할 때 닉네임이 필요가 없고 보여줄 때 id로 가져오
-  // 확장성을 생각해서 기능을 넣을 까
-  // join 해서 유저 테이블이랑 코멘트 같이 가져오기
 
   const getUser = async () => {
     const {
@@ -36,11 +33,6 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     return user
   }
 
-  // insert 성공,, commentList에도 추가해서 useState로 관리하게 하면 리뷰 추가 or 수정 삭제 시 바로 반영되게 할 수 있나?
-  // 근데 그럼 state change 인해 preventDefault해도 어차피 새로고침 되지 않나
-  // 리랜더링과 새로고침은 다른건가?
-  // 새로 고침은 크롬을 껐다가 키는거 예를들면 전역상태 관리한 값 (끄고 켜서 다시 그려짐)
-  // 리랜더링 화면을 다시 그리는거
   const handleAddComment = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -86,8 +78,6 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
     }
   }
 
-  // 함수 표현식 상태에서는 id는 모르는 녀석임
-  // 따로 타입 지정해줘야함
   const handleDeleteComment = async (user_id: string, comment_id: string) => {
     const loggedinUser = await getUser()
     if (!loggedinUser) {
@@ -193,63 +183,78 @@ const Comments: React.FC<CommentsProps> = ({ serial }) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <form
         onSubmit={handleAddComment}
-        className="flex flex-col border-2 border-solid border-gray-600"
+        className="flex h-[11rem] w-4/5 flex-col rounded-lg bg-[#2B2B2B] px-20 py-8"
         ref={formRef}
       >
-        <input type="text" placeholder="리뷰를 등록해 주세요" name="comment" />
-        <button type="submit">리뷰 등록</button>
+        <input
+          type="text"
+          placeholder="리뷰를 등록해 주세요"
+          name="comment"
+          className="mb-3 rounded-lg p-1.5 pb-11"
+        />
+        <button
+          type="submit"
+          className="rounded-lg border-white bg-black p-1.5 text-sm text-white hover:border"
+        >
+          리뷰 작성하기
+        </button>
       </form>
-      <ul className="flex">
+      <ul className="mt-14 flex w-4/6 flex-col items-center">
         {commentList.map((comment: Comment) => {
           return !comment.isEditing ? (
-            <li
-              key={comment.id}
-              className="border-2 border-solid border-gray-600"
-            >
-              <div className="flex justify-between">
-                <div className="flex">
-                  <p>{comment.email}</p>
-                  <p>{comment.created_at.slice(0, 10)}</p>
+            <li key={comment.id}>
+              <div className="px-8 text-sm text-white">
+                <div className="mb-2 flex justify-between">
+                  <div className="flex items-center">
+                    <p className="mr-2 text-base">{comment.email}</p>
+                    <p>{comment.created_at.slice(0, 10)}</p>
+                  </div>
+                  <div className="flex">
+                    <button
+                      onClick={() => {
+                        handleChangeToEditing(comment.user_id, comment.id)
+                      }}
+                    >
+                      edit
+                    </button>
+                    <div className="mx-3 mt-1 h-4 w-0.5 bg-white"></div>
+                    <button
+                      onClick={() => {
+                        handleDeleteComment(comment.user_id, comment.id)
+                      }}
+                    >
+                      delete
+                    </button>
+                  </div>
                 </div>
-                <div className="flex">
-                  <button
-                    onClick={() => {
-                      handleChangeToEditing(comment.user_id, comment.id)
-                    }}
-                  >
-                    edit
-                  </button>
-                  <div>line</div>
-                  <button
-                    onClick={() => {
-                      handleDeleteComment(comment.user_id, comment.id)
-                    }}
-                  >
-                    delete
-                  </button>
-                </div>
+                <div>{comment.comment}</div>
               </div>
-              <div>{comment.comment}</div>
+              <div className="mx-auto my-8 h-0.5 w-[50rem] bg-[#252525]"></div>
             </li>
           ) : (
             <form
               onSubmit={(event) => handleSaveEditedComment(event, comment.id)}
-              className="border-2 border-solid border-gray-600"
+              className="flex w-[40rem] justify-center"
             >
               <input
                 type="text"
                 placeholder="리뷰를 등록해 주세요"
                 name="comment"
                 defaultValue={comment.comment}
+                className="h-[4rem] w-[28rem] rounded-lg"
               />
-              <button type="submit">save</button>
+              <button
+                type="submit"
+                className="ml-2 rounded-lg border-white bg-black p-4 text-white hover:border"
+              >
+                저장
+              </button>
             </form>
           )
         })}
-        {/* line div, last-child none */}
       </ul>
     </div>
   )
