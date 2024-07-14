@@ -3,7 +3,7 @@ import React from "react"
 function Loader() {
   return (
     <div className="flex min-h-[65vh] flex-col items-center">
-      <p className="mt-[100px] text-xl font-bold">Loading...</p>
+      <p className="mt-[100px] text-xl font-bold text-white">Loading...</p>
       <div role="status" className="mt-[50px]">
         <svg
           aria-hidden="true"

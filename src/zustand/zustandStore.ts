@@ -7,6 +7,12 @@ const zustandStore = create<tZustandStore>((set) => ({
   currentOnFocusMovie: 1,
   setCurrentOnFocusMovie: (number) =>
     set((state) => ({ currentOnFocusMovie: number })),
+  showCharacterSearchInput: false,
+  setShowCharacterSearchInput: (boolean) =>
+    set((state) => ({ showCharacterSearchInput: boolean })),
+  characterSearchInputValue: "",
+  setCharacterSearchInputValue: (string) =>
+    set((state) => ({ characterSearchInputValue: string })),
 }))
 
 export default zustandStore
