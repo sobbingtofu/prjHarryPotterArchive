@@ -14,21 +14,26 @@ const MovieInfo: React.FC<MovieInfoProps> = ({ movieInfo }) => {
   const info = movieInfo[0]
 
   return (
-    <div className="flex">
-      <Image src={info.poster} alt="movie poster" width={200} height={140} />
-      <div>
-        <h3>{info.title}</h3>
-        <div>
-          <p>개봉일{info.release_date}</p>
-          <div>line</div>
-          <p>상영시간{info.running_time}</p>
-          <div>line</div>
-          <p>이용가{info.rating}</p>
+    <div className="flex w-[72rem]">
+      <Image src={info.poster} alt="movie poster" width={450} height={310} />
+      <div className="ml-2 mt-16 w-2/5 text-white">
+        <h3 className="mb-6 text-4xl font-bold">{info.title}</h3>
+        <div className="flex items-center text-sm">
+          <p className="flex gap-1">
+            개봉일<span className="font-bold">{info.release_date}</span>
+          </p>
+          <div className="mx-3 h-4 w-0.5 bg-white"></div>
+          <p className="flex gap-1">
+            상영시간<span className="font-bold">{info.running_time}</span>
+          </p>
+          <div className="mx-3 h-4 w-0.5 bg-white"></div>
+          <p className="mt-1 flex gap-1">
+            이용가<span className="font-bold">{info.rating}</span>
+          </p>
         </div>
-        <div>line</div>
-        <div>{info.summary}</div>
+        <div className="my-8 h-0.5 bg-[#3A3837]"></div>
+        <div className="text-sm">{info.summary}</div>
       </div>
-      <div>line</div>
     </div>
   )
 }

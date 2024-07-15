@@ -11,13 +11,18 @@ const MovieTrailer: React.FC<MovieTrailerProps> = ({ movieInfo }) => {
   if (movieInfo.length === 0) {
     return
   }
-  // 배열이 비었는지 아닌지는 run타임에 체크, 아까 떴던건 type 체크라 뜸
-  // 아래까지 안읽음
 
   return (
-    <div>
-      <h3>이 시리즈의 트레일러 보기</h3>
-      <ReactPlayer url={movieInfo[0].trailer} />
+    <div className="mb-32">
+      <div className="w-6/7 mb-32 mt-24 h-0.5 bg-[#252525]"></div>
+      <div>
+        <h3 className="mb-4 text-2xl font-bold text-white">
+          이 시리즈의 트레일러 보기
+        </h3>
+        <div className="h-[28rem]">
+          <ReactPlayer url={movieInfo[0].trailer} width="100%" height="100%" />
+        </div>
+      </div>
     </div>
   )
 }

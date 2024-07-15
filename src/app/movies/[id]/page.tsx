@@ -33,11 +33,13 @@ const moviesDetailPage = ({
   }, [])
 
   return (
-    <div>
-      <MovieInfo movieInfo={movieInfo} />
-      <MovieTrailer movieInfo={movieInfo} />
-      <OtherSeries serial={params.id} allMoviesInfo={allMoviesInfo} />
-      <Comments serial={params.id} />
+    <div className="h-full bg-[#171717] bg-[url('/bgimage.png')] bg-right-top bg-no-repeat">
+      <div className="px-80 py-44">
+        <MovieInfo movieInfo={movieInfo} />
+        <MovieTrailer movieInfo={movieInfo} />
+        <OtherSeries serial={params.id} allMoviesInfo={allMoviesInfo} />
+        <Comments serial={params.id} />
+      </div>
     </div>
   )
 }
