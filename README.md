@@ -18,7 +18,7 @@ https://hogwarts-express.vercel.app/
 |    이혜진    |     최연    |     윤기준    |   강희진   |   추유선   |   
 | :---------: | :----------: | :----------: | :--------: | :---------: | 
 |     팀장    |     팀원     |     팀원     |     팀원    |    팀원    | 
-|  (https://github.com/hyejinleeee)   |   (https://github.com/Cameron-86)  | (https://github.com/sobbingtofu)  | (https://github.com/raccoonboy0803) |  (https://github.com/raccoonboy0803)  |
+|  (https://github.com/hyejinleeee)   |   (https://github.com/Cameron-86)  | (https://github.com/sobbingtofu)  | (https://github.com/raccoonboy0803) |  (https://github.com/jamie240417)  |
 | 회원가입, 로그인 기능 구현 및 인증 기능 | 영화시리즈 소개 페이지, 리뷰기능 구현 | 메인페이지 디자인, API통신기능 및 슬라이더 기능 구현 |  캐릭터 소개 페이지 디자인, API통신기능 및 캐러셀기능 구현  | 설문 조사 페이지 - 설문지 로직정의 및 해당 기능 표현 |
 
 |  예병수  |
