@@ -68,7 +68,9 @@ function MovieList() {
           <Swiper
             // @ts-ignore - Custom property
             style={{
+              // @ts-ignore - Custom property
               "--swiper-pagination-color": "#e1e1e1",
+              // @ts-ignore - Custom property
               "--swiper-pagination-bullet-inactive-color": "#999999",
             }}
             ref={swiperRef}
