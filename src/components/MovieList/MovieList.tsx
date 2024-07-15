@@ -66,10 +66,11 @@ function MovieList() {
       <div className="mx-auto w-[75%]">
         <div className="w-f">
           <Swiper
-            style={{
-              "--swiper-pagination-color": "#e1e1e1",
-              "--swiper-pagination-bullet-inactive-color": "#999999",
-            }}
+            // 오류 발생해 주석처리 (임시)
+            // style={{
+            //   "--swiper-pagination-color": "#e1e1e1",
+            //   "--swiper-pagination-bullet-inactive-color": "#999999",
+            // }}
             ref={swiperRef}
             effect={"coverflow"}
             grabCursor={false}
