@@ -16,6 +16,7 @@ const config = {
       screens: {
         "2xl": "1400px",
       },
+      // @ts-ignore - Custom property
       colors: {
         gray: { 800: "#171717" },
       },
