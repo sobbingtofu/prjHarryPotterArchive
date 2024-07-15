@@ -9,7 +9,7 @@ import MovieTrailer from "@/components/movieDetail/MovieTrailer"
 import OtherSeries from "@/components/movieDetail/OtherSeries"
 import { fetchMovies } from "@/app/api/movies.api"
 
-const moviesDetailPage = ({
+const MoviesDetailPage = ({
   params,
 }: {
   params: {
@@ -44,4 +44,4 @@ const moviesDetailPage = ({
   )
 }
 
-export default moviesDetailPage
+export default MoviesDetailPage
