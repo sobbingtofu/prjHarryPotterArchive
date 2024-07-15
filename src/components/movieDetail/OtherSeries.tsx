@@ -14,8 +14,8 @@ const OtherSeries: React.FC<OtherSeriesProps> = ({ serial, allMoviesInfo }) => {
   }
 
   return (
-    <div className="relative mb-[35rem] mt-32 text-white">
-      <div className="absolute left-[-7rem]">
+    <div className="relative mb-16 mt-32 w-full text-white">
+      <div className="mx-auto w-full">
         <h3 className="mb-4 ml-12 text-2xl font-bold">다른 시리즈 보기</h3>
         <ul className="flex">
           {allMoviesInfo
