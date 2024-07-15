@@ -1,8 +1,16 @@
-import Page from "@/components/Page";
-import React from "react";
+import React from "react"
 
-function HouseTestPage() {
-  return <Page>기숙사 설문조사 페이지</Page>;
+import HouseTestPage from "@/components/house-tests/page"
+
+const page = () => {
+  return (
+    <main
+      className="h-full w-full bg-cover bg-center bg-no-repeat py-20"
+      style={{ backgroundImage: 'url("/bgimage.png")' }}
+    >
+      <HouseTestPage />
+    </main>
+  )
 }
 
-export default HouseTestPage;
+export default page
